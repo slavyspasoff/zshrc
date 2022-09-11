@@ -20,6 +20,13 @@ WORDCHARS=
 bindkey '^[[1;5C' emacs-forward-word
 bindkey '^[[1;5D' emacs-backward-word
 
+#tab autocompletion
+autoload -U compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zmodload zsh/complist
+compinit
+
 #alias
 alias rm='rm -i'
 alias cp='cp -i'
