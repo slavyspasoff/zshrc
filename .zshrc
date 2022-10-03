@@ -11,7 +11,7 @@ setopt PUSHD_IGNORE_DUPS
 setopt CD_SILENT
 
 #enable theme
-eval "$(oh-my-posh init zsh --config ~/.poshthemes/craver_mod.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.poshthemes/amro.omp.json)"
 
 #ctrl-w respects "/", etc...
 WORDCHARS=
@@ -26,26 +26,40 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zmodload zsh/complist
 compinit
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+
+
+
 
 #alias
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias btw='neofetch | lolcat'
+alias exa='exa --icons --group-directories-first'
 alias ls='exa --icons --group-directories-first'
-alias le='exa -a --icons --group-directories-first'
+alias sl='exa --icons --group-directories-first'
+le(){
+  NUM=${1-1}
+  exa --icons --tree --group-directories-first -D -L $NUM
+}
+alias tree='exa --icons --tree --group-directories-first'
+alias ll='exa -la --icons --group-directories-first'
+alias la='exa -a --icons --group-directories-first'
 alias do-test='cd ~/Programming/Testing && code .'
 alias do-documentation='cd ~/Programming/Documentation/Javascript && code .'
-alias do-bootcamp='cd ~/Programming/Projects/DCI/Javascript/section-02 && git clone'
+alias do-bootcamp='cd ~/Programming/Projects/DCI/React'
+alias dci='cd ~/Programming/Projects/DCI/React'
+alias playground='cd ~/Programming/Playground/'
 alias vim='nvim'
 alias cl='clear'
-alias dci='cd ~/Programming/Projects/DCI/Javascript/section-02'
+alias lc='clear'
 alias dirs='dirs -v'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias df='df -h'
-alias free='free -g'
+alias free='free -m'
 alias du='du -h'
 
 #plugins
