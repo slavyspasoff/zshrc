@@ -33,24 +33,32 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias btw='neofetch | lolcat'
-alias exa='exa --icons --group-directories-first'
 alias ls='exa --icons --group-directories-first'
 alias sl='exa --icons --group-directories-first'
 le(){
-  NUM=${1-1}
-  exa --icons --tree --group-directories-first -L $NUM
+if [[ -z $1 ]]; then
+   exa --icons --tree --group-directories-first --git-ignore -L 1
+ elif  [[ ( $1 == 'a' || $1 == '-a' ) && -z $2 ]];  then
+   exa --icons --tree -a --group-directories-first -L 1
+ elif  [[ $1 == [0-9] && -z $2 ]];  then
+   exa --icons --tree --group-directories-first --git-ignore -L $1
+ elif  [[ $1 == [0-9] && ( $2 == 'a' || $2 == '-a' )]];  then
+   exa --icons --tree -a --group-directories-first -L $1
+ elif  [[ ( $1 == 'a' || $1 == '-a' ) && $2 == [0-9] ]];  then
+   exa --icons --tree -a --group-directories-first -L $2
+ fi   
 }
 tree(){
  if [[ -z $1 ]]; then
-   exa --icons --tree --group-directories-first -L 1
+   exa --icons --tree --group-directories-first -D --git-ignore
+ elif  [[ ( $1 == 'a' || $1 == '-a' ) && -z $2 ]];  then
+   exa --icons --tree -a --group-directories-first -D
  elif  [[ $1 == [0-9] && -z $2 ]];  then
-   exa --icons --tree --group-directories-first -L $1
- elif  [[ $1 == 'a' && -z $2 ]];  then
-   exa --icons --tree -a --group-directories-first -L 1
- elif  [[ $1 == [0-9] && $2 = 'a' ]];  then
-   exa --icons --tree -a --group-directories-first -L $1
- elif  [[ $1 == 'a' && $2 = [0-9] ]];  then
-   exa --icons --tree -a --group-directories-first -L $2
+   exa --icons --tree --group-directories-first -D --git-ignore -L $1
+ elif  [[ $1 == [0-9] && ( $2 == 'a' || $2 == '-a' )]];  then
+   exa --icons --tree -a --group-directories-first -D -L $1
+ elif  [[ ( $1 == 'a' || $1 == '-a' ) && $2 == [0-9] ]];  then
+   exa --icons --tree -a --group-directories-first -D -L $2
  fi    
 }
 alias ll='exa -la --icons --group-directories-first'
@@ -60,6 +68,7 @@ alias do-documentation='cd ~/Programming/Documentation/Javascript && code .'
 alias do-bootcamp='cd ~/Programming/Projects/DCI/React'
 alias dci='cd ~/Programming/Projects/DCI/React'
 alias playground='cd ~/Programming/Playground/'
+alias do-react='cd ~/Programming/Projects/React'
 alias vim='nvim'
 alias cl='clear'
 alias lc='clear'
