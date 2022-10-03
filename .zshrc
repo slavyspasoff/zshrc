@@ -28,9 +28,6 @@ zmodload zsh/complist
 compinit
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
-
-
-
 #alias
 alias rm='rm -i'
 alias cp='cp -i'
@@ -41,9 +38,21 @@ alias ls='exa --icons --group-directories-first'
 alias sl='exa --icons --group-directories-first'
 le(){
   NUM=${1-1}
-  exa --icons --tree --group-directories-first -D -L $NUM
+  exa --icons --tree --group-directories-first -L $NUM
 }
-alias tree='exa --icons --tree --group-directories-first'
+tree(){
+ if [[ -z $1 ]]; then
+   exa --icons --tree --group-directories-first -L 1
+ elif  [[ $1 == [0-9] && -z $2 ]];  then
+   exa --icons --tree --group-directories-first -L $1
+ elif  [[ $1 == 'a' && -z $2 ]];  then
+   exa --icons --tree -a --group-directories-first -L 1
+ elif  [[ $1 == [0-9] && $2 = 'a' ]];  then
+   exa --icons --tree -a --group-directories-first -L $1
+ elif  [[ $1 == 'a' && $2 = [0-9] ]];  then
+   exa --icons --tree -a --group-directories-first -L $2
+ fi    
+}
 alias ll='exa -la --icons --group-directories-first'
 alias la='exa -a --icons --group-directories-first'
 alias do-test='cd ~/Programming/Testing && code .'
