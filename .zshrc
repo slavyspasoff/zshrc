@@ -11,7 +11,7 @@ setopt PUSHD_IGNORE_DUPS
 setopt CD_SILENT
 
 #enable theme
-eval "$(oh-my-posh init zsh --config ~/.poshthemes/amro.omp.json)"
+eval "$(starship init zsh)"
 
 #ctrl-w respects "/", etc...
 WORDCHARS=
@@ -41,6 +41,9 @@ alias mv='mv -i'
 alias btw='neofetch | lolcat'
 alias ls='exa --icons --group-directories-first'
 alias sl='exa --icons --group-directories-first'
+alias hist='history'
+
+
 le(){
  if [[ $1 != [0-9] ]]; then
    exa --icons --tree --group-directories-first -L 1 $@
@@ -85,7 +88,7 @@ alias du='du -h'
 alias natours='cd ~/Programming/Playground/udemy_node/4-natours/starter'
 
 #plugins
-source $HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
